@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAHM: Arabic Financial Instruction-Tuning Dataset and Models</title>
+
+  <meta name="description" content="SAHM: the first holistic Arabic financial NLP benchmark and instruction-tuning suite covering Shari’ah standards QA, fatwa QA/MCQ, business & accounting MCQ, report sentiment, extractive summarization, and event–cause reasoning." />
+  <meta property="og:title" content="SAHM: Arabic Financial Instruction-Tuning Dataset and Models" />
+  <meta property="og:description" content="Holistic Arabic financial NLP benchmark and models." />
+
+  <!-- IMPORTANT: load Tailwind without 'defer' so styles are ready before first paint -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body{background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #f8fafc 55%, #eef2f7 100%);}
+    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border-radius:1rem; border:1px solid #e5e7eb; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.04); font-size:.95rem; }
+    .btn:hover{ box-shadow:0 6px 14px rgba(0,0,0,.08);}
+    .chip{ display:inline-flex; align-items:center; padding:.3rem .7rem; border-radius:9999px; font-size:.8rem; border:1px solid #e5e7eb; background:#fff;}
+    .section{ max-width: 72rem; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem;}
+    code.bib{ white-space: pre; display:block; overflow:auto; padding:1rem; border-radius:1rem; background:#0b1020; color:#e5e7eb; }
+    .hidden{ display:none; }
+
+    /* Fallback dimensions if Tailwind is late/unavailable */
+    #logo{ width:48px; height:48px; }
+    /* smaller fallback for overview */
+    #overview{ max-width:48rem; width:80%; height:auto; }
+    /* fallbacks for new media */
+    #pipeline-img{ max-width:48rem; width:80%; height:auto; }
+    #benchmark-embed{ width:80%; max-width:48rem; height:560px; display:block; margin:0 auto; }
+  </style>
+
+  <link id="favicon" rel="icon" type="image/png" href="./assets/logo.png" />
+</head>
+<body class="text-gray-800 selection:bg-amber-200/40">
+  <!-- Hero -->
+  <header class="section pt-12 pb-6 text-center">
+    <!-- H1 with inline logo aligned to "SAHM" -->
+    <div class="flex justify-center items-start">
+      <div class="flex items-baseline gap-2 text-center">
+        <img id="logo" src="./assets/logo.png" alt="SAHM logo"
+            class="w-10 h-10 sm:w-12 sm:h-12 translate-y-[2px]" />
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          SAHM: Arabic Financial Instruction-Tuning<br class="hidden sm:block" />
+          Dataset and Models
+        </h1>
+      </div>
+    </div>
+    <!-- tighter margin above Authors -->
+    <p class="mt-2 text-lg text-gray-600">Holistic Arabic financial NLP benchmark and instruction-tuning resources</p>
+
+    <!-- Authors / Affiliations (tighter top margin) -->
+    <div class="mt-3 text-gray-700">
+      <p class="font-semibold text-base">Authors:</p>
+      <p class="mt-1 leading-relaxed text-sm sm:text-base">
+        Rania Elbadry<sup>1</sup>, Sarfraz Ahmad<sup>1*</sup>, Dani Bouch<sup>1*</sup>, Momina Ahsan<sup>1</sup>, Xueqing Peng<sup>1</sup>,
+        Jimin Huang<sup>1</sup>, Muhra AlMahri<sup>1</sup>, Marwa Elsaid Khalil<sup>1</sup>, Yuxia Wang<sup>1</sup>,
+        Salem Lahlou<sup>1</sup>, Veselin Stoyanov<sup>1</sup>, Sophia Ananiadou<sup>1</sup>, Preslav Nakov<sup>1</sup>, Zhuohan Xie<sup>1</sup>
+      </p>
+      <p class="text-xs text-gray-500 mt-1">*Equal contribution.</p>
+    </div>
+
+    <div class="mt-2 text-gray-700">
+      <p class="font-semibold text-base">Affiliations:</p>
+      <p class="mt-1 leading-relaxed text-sm sm:text-base"><sup>1</sup> Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</p>
+      <p class="text-xs text-gray-500 mt-1">Contact: rania.elbadry@mbzuai.ac.ae</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a class="btn" id="pdf-link" href="./assets/SAHM.pdf" target="_blank" rel="noopener">
+        <img src="./assets/adobe.svg" alt="PDF" class="w-5 h-5">
+        Paper
+      </a>
+      <a class="btn" href="https://github.com/mbzuai-nlp/SAHM" target="_blank" rel="noopener">
+        <img src="./assets/github.png" alt="GitHub" class="w-5 h-5">
+        Code
+      </a>
+      <a class="btn" href="#datasets">
+        <img src="./assets/hf.png" alt="Hugging Face" class="w-5 h-5">
+        Datasets
+      </a>
+
+      <!-- NEW: Leaderboard button (built-in SVG icon) -->
+      <a class="btn" href="./leaderboard.html" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 21h8M12 17v4M18 3H6v3a4 4 0 0 1-4 4h1a5 5 0 0 0 5-5V3h8v2a5 5 0 0 0 5 5h1a4 4 0 0 1-4-4V3z"/>
+          <path d="M7 13h10v2a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-2z"/>
+        </svg>
+        Leaderboard
+      </a>
+
+      <button class="btn" id="copy-bib">
+        <img src="./assets/quotes.png" alt="Citation" class="w-5 h-5">
+        Citation
+      </button>
+    </div>
+  </header>
+
+  <!-- Teaser / Overview figure -->
+  <section class="section py-8" id="overview-section">
+    <!-- narrower container + smaller image -->
+    <div class="mx-auto max-w-3xl bg-transparent">
+      <img id="overview" src="./assets/overview.png" alt="SAHM overview figure" class="w-11/12 sm:w-4/5 mx-auto bg-transparent" />
+    </div>
+    <p class="text-center text-sm text-gray-500 mt-2">
+      Figure 1: Overview of the SAHM benchmark. The diagram illustrates the seven core Arabic financial NLP tasks and their thematic coverage across Islamic finance, accounting, and business domains.
+    </p>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section py-8">
+    <h2 class="text-xl font-semibold">Abstract</h2>
+    <p class="mt-3 leading-7 text-gray-700 text-[15.5px]">We present SAHM, the first large-scale benchmark and instruction-tuning dataset for Arabic financial NLP. Despite advances in English benchmarks such as FiQA, FinQA, and FinChain, there is no comprehensive resource for evaluating large language models (LLMs) on Arabic financial and Shari’ah-compliant reasoning. SAHM fills this gap through seven expert-verified tasks covering Islamic Finance Shari’ah Standards QA, Fatwa QA and MCQ, Business and Accounting MCQ, Financial Report Sentiment Analysis, Extractive Summarization, and Event–Cause Reasoning QA. All data are derived from authentic Arabic regulatory, juristic, and corporate sources and curated via a hybrid LLM–human pipeline ensuring linguistic fidelity and legal–financial accuracy. We benchmark 13 proprietary, open-source, and Arabic-centric LLMs, showing that proprietary models (e.g., GPT-5) outperform others in open-ended reasoning, while Arabic-tuned models achieve higher accuracy on domain-specific MCQs but struggle with causal and doctrinal reasoning. By combining financial, legal, and linguistic perspectives, SAHM provides the first holistic evaluation suite for Arabic financial NLP, establishing a foundation for reproducible, culturally grounded research and future instruction-tuned model development.</p>
+  </section>
+
+  <!-- NEW: Illustrative Examples -->
+  <section class="section py-8" id="examples">
+    <div class="mx-auto max-w-3xl bg-transparent">
+      <img id="benchmark-img" src="./assets/benchmark.png" alt="SAHM illustrative examples"
+          class="w-11/12 sm:w-4/5 mx-auto bg-transparent rounded-xl" />
+    </div>
+    <p class="text-center text-sm text-gray-500 mt-2">
+      Figure 2: Illustrative examples — juristic QA, fatwa QA/MCQ, business &amp; accounting MCQs,
+      financial sentiment, extractive summarization, and event–cause QA.
+    </p>
+  </section>
+
+  <!-- NEW: Pipeline image -->
+  <section class="section py-8" id="pipeline">
+    <div class="mx-auto max-w-3xl bg-transparent">
+      <img id="pipeline-img" src="./assets/pipeline.png" alt="SAHM data pipeline" class="w-11/12 sm:w-4/5 mx-auto bg-transparent" />
+    </div>
+    <p class="text-center text-sm text-gray-500 mt-2">
+      Figure 3: Data pipeline—AAOIFI book → OCR → text files → LLM draft QA → expert verification and legal compliance.
+    </p>
+  </section>
+
+  <!-- Tasks -->
+  <section class="section py-6">
+    <h2 class="text-xl font-semibold">Tasks Covered</h2>
+    <ul class="mt-3 list-disc pl-6 space-y-2 text-gray-700 text-[15.5px]">
+      <li>Islamic Finance <em>Shari’ah Standards</em> QA</li>
+      <li>Islamic Financial Fatwa QA</li>
+      <li>Islamic Financial Fatwa MCQ</li>
+      <li>Business MCQ</li>
+      <li>Accounting MCQ</li>
+      <li>Financial Report Sentiment Analysis (MCQ)</li>
+      <li>Report Extractive Summarization</li>
+      <li>Event–Cause Reasoning QA</li>
+    </ul>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section py-6">
+    <h2 class="text-xl font-semibold">Highlights</h2>
+    <ul class="mt-3 list-disc pl-6 space-y-2 text-gray-700 text-[15.5px]">
+      <li>First comprehensive Arabic financial NLP benchmark unifying modern finance with Shari’ah-compliant reasoning.</li>
+      <li>Native-speaker–verified datasets with normalization scripts and standardized evaluation protocols.</li>
+      <li>Benchmarks 13 LLMs and reveals gaps in causal inference, hybrid legal–financial reasoning, and doctrinal fidelity.</li>
+    </ul>
+  </section>
+
+  <!-- Resources -->
+  <section id="datasets" class="section py-8 grid sm:grid-cols-2 gap-6">
+    <div class="p-5 rounded-3xl border bg-white shadow-sm">
+      <h3 class="text-lg font-semibold">Paper & Materials</h3>
+      <ul class="mt-3 space-y-2 text-gray-700 text-[15.5px]">
+        <li><a class="underline" id="pdf-link-2" href="./assets/SAHM.pdf" target="_blank">PDF</a> · <a class="underline" href="#" target="_blank">Poster (soon)</a> · <a class="underline" href="#" target="_blank">Slides (soon)</a></li>
+        <li><a class="underline" href="#citation">Citation</a> · <a class="underline" href="#bibtex">BibTeX</a></li>
+      </ul>
+    </div>
+    <div class="p-5 rounded-3xl border bg-white shadow-sm">
+      <h3 class="text-lg font-semibold">Datasets & Models</h3>
+      <ul class="mt-3 space-y-2 text-gray-700 text-[15.5px]">
+        <li>Code & evaluation: <a class="underline" href="https://github.com/mbzuai-nlp/SAHM" target="_blank">github.com/mbzuai-nlp/SAHM</a></li>
+        <li>Model checkpoints: <span class="text-gray-500">coming soon (Hugging Face)</span></li>
+        <li>Dataset release: <span class="text-gray-500">coming soon (HF Datasets)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section id="citation" class="section py-8">
+    <h2 class="text-xl font-semibold">Citation</h2>
+    <p class="mt-3 text-gray-700 text-[15.5px]">If you find this work useful, please cite:</p>
+    <code id="bibtex" class="bib mt-4">@inproceedings{sahm2025,
+  title={SAHM: Arabic Financial Instruction-Tuning Dataset and Models},
+  author={Elbadry, Rania and Ahmad, Sarfraz and Bouch, Dani and Ahsan, Momina and Peng, Xueqing and Huang, Jimin and AlMahri, Muhra and Khalil, Marwa Elsaid and Wang, Yuxia and Lahlou, Salem and Stoyanov, Veselin and Ananiadou, Sophia and Nakov, Preslav and Xie, Zhuohan},
+  booktitle={},
+  year={2025},
+  url={https://github.com/mbzuai-nlp/SAHM}
+}</code>
+  </section>
+
+  <!-- Footer -->
+  <footer class="section py-10 text-center text-sm text-gray-500">
+    <div class="flex items-center justify-center gap-4">
+      <a class="underline" href="https://github.com/mbzuai-nlp/SAHM" target="_blank">GitHub</a>
+      <a class="underline" id="pdf-link-3" href="./assets/SAHM.pdf" target="_blank">Paper PDF</a>
+      <a class="underline" id="overview-link" href="./assets/overview.png" target="_blank">Overview (PNG)</a>
+    </div>
+    <p class="mt-3">© <span id="year"></span> The Authors.</p>
+  </footer>
+
+  <script>
+    // Cache busting (kept) & graceful fallbacks (kept)
+    (function () {
+      const BUST = (new Date()).toISOString().replace(/[^0-9]/g, '').slice(0,14);
+      const bust = url => url + (url.includes('?') ? '&' : '?') + 'v=' + BUST;
+
+      // Images
+      ['logo','overview','pipeline-img'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getAttribute('src')?.startsWith('./assets/')) {
+          el.src = bust(el.getAttribute('src'));
+        }
+      });
+
+      // PDF object + links
+      const benchObj = document.getElementById('benchmark-embed');
+      if (benchObj && benchObj.getAttribute('data')?.startsWith('./assets/')) {
+        benchObj.setAttribute('data', bust(benchObj.getAttribute('data')));
+      }
+      const benchLink = document.getElementById('benchmark-link');
+      if (benchLink && benchLink.getAttribute('href')?.startsWith('./assets/')) {
+        benchLink.href = bust(benchLink.getAttribute('href'));
+      }
+
+      // Asset links
+      ['pdf-link','pdf-link-2','pdf-link-3','overview-link'].forEach(id => {
+        const a = document.getElementById(id);
+        if (a && a.getAttribute('href')?.startsWith('./assets/')) a.href = bust(a.getAttribute('href'));
+      });
+
+      // Favicon + og:image
+      const fav = document.getElementById('favicon');
+      if (fav?.getAttribute('href')) fav.href = bust(fav.getAttribute('href'));
+
+      const og = document.querySelector('meta[property="og:image"]') || document.head.appendChild(document.createElement('meta'));
+      og.setAttribute('property','og:image');
+      og.setAttribute('content', bust('./assets/overview.png'));
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById('copy-bib').addEventListener('click', async () => {
+        const txt = document.getElementById('bibtex').innerText.trim();
+        try { await navigator.clipboard.writeText(txt); alert('BibTeX copied!'); } catch (e) { console.log(e); }
+      });
+    })();
+  </script>
+</body>
+</html>

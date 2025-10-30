@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAHM Leaderboard</title>
+  <meta name="description" content="Leaderboards for SAHM: Arabic Financial Instruction-Tuning Dataset and Models" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #f8fafc 55%, #eef2f7 100%);}
+    .section{ max-width: 80rem; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem;}
+    .card{ background:#fff; border:1px solid #e5e7eb; border-radius:1rem; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+    .btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .9rem; border-radius:1rem; border:1px solid #e5e7eb; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.04); font-size:.95rem; }
+    .btn:hover{ box-shadow:0 6px 14px rgba(0,0,0,.08);}
+    table{ width:100%; border-collapse:collapse; }
+    thead th{ position:sticky; top:0; background:#f8fafc; z-index:1; }
+    th, td{ padding:.6rem .7rem; text-align:center; border-bottom:1px solid #e5e7eb; }
+    th:first-child, td:first-child{ text-align:left; }
+  </style>
+</head>
+<body class="text-gray-800 selection:bg-amber-200/40">
+  <header class="section pt-10 pb-4">
+    <div class="flex items-center justify-between">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">SAHM Leaderboard</h1>
+      <a href="./index.html" class="btn" aria-label="Back to SAHM home">
+        <!-- back/home icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </a>
+    </div>
+    <p class="mt-2 text-gray-600">Recreated from the paper for quick comparison. Scores are as reported.</p>
+  </header>
+
+  <!-- Table 1: Extractive Summarization -->
+  <section class="section py-4">
+    <div class="card p-4">
+      <h2 class="text-xl font-semibold">Extractive Summarization on Arabic Financial Reports (ROUGE F1 %)</h2>
+      <div class="overflow-x-auto mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>#Examples</th>
+              <th>ROUGE-1</th>
+              <th>ROUGE-2</th>
+              <th>ROUGE-L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-50"><td colspan="5" class="text-left font-medium italic">Open-source Models</td></tr>
+            <tr><td>Gemma-2-9B-IT</td><td>40</td><td>75.84</td><td>61.09</td><td>64.67</td></tr>
+            <tr><td>LLaMA-3.1-8B</td><td>40</td><td>65.93</td><td>43.12</td><td>54.45</td></tr>
+            <tr><td>Qwen2.5-14B-Instruct</td><td>40</td><td>78.68</td><td>62.14</td><td>63.93</td></tr>
+            <tr><td>Qwen2.5-7B-Instruct</td><td>40</td><td>59.19</td><td>37.13</td><td>50.76</td></tr>
+            <tr><td>Falcon-H1-7B-Instruct</td><td>40</td><td>11.24</td><td>4.38</td><td>10.04</td></tr>
+
+            <tr class="bg-gray-50"><td colspan="5" class="text-left font-medium italic">Proprietary Models</td></tr>
+            <tr><td>GPT-5</td><td>40</td><td>81.08</td><td>66.90</td><td>65.81</td></tr>
+            <tr><td>GPT-4o</td><td>40</td><td>79.60</td><td>61.69</td><td>63.98</td></tr>
+            <tr><td>GPT-4</td><td>40</td><td>79.66</td><td>61.78</td><td>63.00</td></tr>
+            <tr><td>Claude-4 Sonnet</td><td>40</td><td>82.35</td><td>65.39</td><td>64.78</td></tr>
+            <tr><td>Gemini-2.5 Pro</td><td>40</td><td>36.35</td><td>26.40</td><td>28.84</td></tr>
+
+            <tr class="bg-gray-50"><td colspan="5" class="text-left font-medium italic">Arabic Models</td></tr>
+            <tr><td>ALLAM-7B</td><td>40</td><td>67.67</td><td>45.16</td><td>53.98</td></tr>
+            <tr><td>Fanar-1-9B-Instruct</td><td>40</td><td>55.64</td><td>30.73</td><td>44.72</td></tr>
+            <tr><td>SILMA-9B</td><td>40</td><td>18.51</td><td>12.16</td><td>17.14</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">Table 1: ROUGE-1/2/L F1 (%). 40 examples per model.</p>
+    </div>
+  </section>
+
+  <!-- Table 2: Unified Leaderboard -->
+  <section class="section py-4">
+    <div class="card p-4">
+      <h2 class="text-xl font-semibold">Unified Leaderboard (MCQ Accuracy % and Open-Ended QA Score 0–10)</h2>
+      <div class="overflow-x-auto mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Model</th>
+              <th colspan="5">MCQ (Accuracy % ↑)</th>
+              <th></th>
+              <th colspan="4">Open-Ended QA (Score 0–10 ↑)</th>
+            </tr>
+            <tr>
+              <th>Accounting</th><th>Business</th><th>Fatwā</th><th>Sentiment</th><th>Acc. Mean</th>
+              <th></th>
+              <th>ECR-QA</th><th>SS-QA</th><th>Fatwa-QA</th><th>Score Mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-50"><td colspan="11" class="text-left font-medium italic">Open-source Models</td></tr>
+            <tr><td>Qwen2.5-14B-Instruct</td><td>20.83</td><td>67.11</td><td>64.40</td><td>57.50</td><td>52.96</td><td></td><td>7.553</td><td>4.777</td><td>3.748</td><td>5.651</td></tr>
+            <tr><td>Qwen2.5-7B-Instruct</td><td>29.17</td><td>67.11</td><td>60.40</td><td>60.00</td><td>54.67</td><td></td><td>6.606</td><td>3.494</td><td>2.772</td><td>4.689</td></tr>
+            <tr><td>Gemma-2-9B-IT</td><td>25.00</td><td>48.68</td><td>68.80</td><td>60.00</td><td>50.62</td><td></td><td>6.781</td><td>4.020</td><td>3.464</td><td>5.123</td></tr>
+            <tr><td>LLaMA-3.1-8B</td><td>29.17</td><td>61.84</td><td>62.80</td><td>65.00</td><td>54.70</td><td></td><td>4.889</td><td>2.441</td><td>1.689</td><td>3.289</td></tr>
+            <tr><td>Falcon-H1-7B-Instruct</td><td>37.50</td><td>52.63</td><td>66.40</td><td>57.50</td><td>53.51</td><td></td><td>7.151</td><td>3.968</td><td>3.009</td><td>4.709</td></tr>
+
+            <tr class="bg-gray-50"><td colspan="11" class="text-left font-medium italic">Proprietary Models</td></tr>
+            <tr><td>GPT-5</td><td><b>87.50</b></td><td>72.37</td><td><b>80.80</b></td><td>55.00</td><td><b>73.92</b></td><td></td><td><b>9.658</b></td><td><b>9.068</b></td><td><b>8.227</b></td><td><b>8.984</b></td></tr>
+            <tr><td>GPT-4o</td><td>54.17</td><td><b>75.00</b></td><td>76.40</td><td>62.50</td><td>67.52</td><td></td><td>8.436</td><td>6.776</td><td>6.046</td><td>7.086</td></tr>
+            <tr><td>GPT-4</td><td>25.00</td><td>73.68</td><td>72.00</td><td>52.50</td><td>55.79</td><td></td><td>6.766</td><td>5.807</td><td>5.209</td><td>5.927</td></tr>
+            <tr><td>Claude-4 Sonnet</td><td>45.83</td><td>59.21</td><td>65.20</td><td>57.50</td><td>56.44</td><td></td><td>8.812</td><td>7.934</td><td>6.586</td><td>7.777</td></tr>
+            <tr><td>Gemini-2.5 Pro</td><td>25.00</td><td>47.37</td><td>68.80</td><td>57.50</td><td>49.67</td><td></td><td>6.472</td><td>5.617</td><td>5.104</td><td>5.731</td></tr>
+
+            <tr class="bg-gray-50"><td colspan="11" class="text-left font-medium italic">Arabic Models</td></tr>
+            <tr><td>ALLAM-7B</td><td>20.83</td><td>68.42</td><td><b>70.00</b></td><td><b>65.00</b></td><td>56.06</td><td></td><td>6.340</td><td>4.710</td><td>4.110</td><td><b>5.053</b></td></tr>
+            <tr><td>Fanar-1-9B</td><td><b>33.33</b></td><td><b>71.05</b></td><td>68.80</td><td>42.50</td><td>53.92</td><td></td><td><b>6.950</b></td><td>3.780</td><td>3.740</td><td>4.823</td></tr>
+            <tr><td>SILMA-9B</td><td>14.29</td><td>67.11</td><td>57.60</td><td>45.00</td><td>46.00</td><td></td><td>1.820</td><td>3.300</td><td>2.580</td><td>2.567</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">Table 2: Unified leaderboard with unweighted means across tasks.</p>
+    </div>
+  </section>
+
+  <footer class="section py-10 text-center text-sm text-gray-500">
+    <div class="flex items-center justify-center gap-4">
+      <a class="btn" href="./index.html">← Back to Home</a>
+    </div>
+    <p class="mt-3">© <span id="year"></span> The Authors.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

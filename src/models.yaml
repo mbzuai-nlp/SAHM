@@ -1,0 +1,109 @@
+# models.yaml for Arabic Accounting MCQ Evaluation
+
+# Open source models for local evaluation
+open_models:
+  # gemma-2-9b-it:
+  #   hf_id: "google/gemma-2-9b-it"
+  #   max_len: 4096
+  #   chat_template: "auto"
+  #   stop: []
+  #   four_bit: false
+
+  # llama-3.1-8b:
+  #   hf_id: "meta-llama/Llama-3.1-8B-Instruct"
+  #   max_len: 8192
+  #   chat_template: "auto"
+  #   stop: []
+  #   four_bit: true
+
+  # qwen2.5-7b-instruct:
+  #   hf_id: "Qwen/Qwen2.5-7B-Instruct"
+  #   max_len: 4096
+  #   chat_template: "auto"
+  #   stop: []
+  #   four_bit: true
+
+  # qwen2.5-14b-instruct:
+  #   hf_id: "Qwen/Qwen2.5-14B-Instruct"
+  #   max_len: 4096
+  #   chat_template: "auto"
+  #   stop: []
+  #   four_bit: true
+
+# Closed models via DeepInfra API
+closed_models:
+  meta-llama-3.1-8b:
+    model_name: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  meta-llama-3.1-70b:
+    model_name: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  qwen2.5-72B-instruct:
+    model_name: "Qwen/Qwen2.5-72B-Instruct"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  gemma-3-27b-it:
+    model_name: "google/gemma-3-27b-it"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  gemma-3-4b-it:
+    model_name: "google/gemma-3-4b-it"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  mixtral-8-7b-instruct:
+    model_name: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    provider: "deepinfra"
+    max_tokens: 4096
+
+  # claude-4-sonnet:
+  #   model_name: "anthropic/claude-4-sonnet"
+  #   provider: "deepinfra"
+  #   max_tokens: 4096
+
+  # gemini-2.5-pro:
+  #   model_name: "google/gemini-2.5-pro"
+  #   provider: "deepinfra"
+  #   max_tokens: 4096
+
+  # gpt-4:
+  #   model_name: "gpt-4"
+  #   provider: "openai"
+  #   max_tokens: 4096
+
+  # gpt-4o:
+  #   model_name: "gpt-4o"
+  #   provider: "openai"
+  #   max_tokens: 4096
+
+  # gpt-5:
+  #   model_name: "gpt-5"
+  #   provider: "openai"
+  #   max_tokens: 4096
+
+# Models to evaluate (comment out models you don't want to run)
+eval_models:
+  open:
+    # - "gemma-2-9b-it"
+    # - "llama-3.1-8b"
+    # - "qwen2.5-7b-instruct"
+    # - "qwen2.5-14b-instruct"
+
+  closed:
+    # - "claude-4-sonnet"
+    # - "gemini-2.5-pro"
+    # - "gpt-4"
+    # - "gpt-4o"
+    # - "gpt-5"
+    - "meta-llama-3.1-8b"
+    - "meta-llama-3.1-70b"
+    - "qwen2.5-72B-instruct"
+    - "gemma-3-27b-it"
+    - "gemma-3-4b-it"
+    - "mixtral-8-7b-instruct"

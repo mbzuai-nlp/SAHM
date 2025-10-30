@@ -1,0 +1,73 @@
+# Multi-dataset configuration for Arabic MCQ and Generation Evaluation
+datasets:
+  # MCQ Datasets
+  # - name: "arabic-accounting-mcq_eval"
+  #   hf_name: "SahmBenchmark/arabic-accounting-mcq_eval"
+  #   splits: ["validation", "test"]
+
+  # - name: "arabic-business-mcq_eval"
+  #   hf_name: "SahmBenchmark/arabic-business-mcq_eval"
+  #   splits: ["validation", "test"]
+
+  # - name: "fatwa-mcq-evaluation_standardized"
+  #   hf_name: "SahmBenchmark/fatwa-mcq-evaluation_standardized"
+  #   splits: ["validation", "test"]
+
+  # - name: "Sentiment_Analysis_MCQ_eval"
+  #   hf_name: "SahmBenchmark/Sentiment_Analysis_MCQ_eval"
+  #   splits: ["validation", "test"]
+
+  # Generation Datasets
+  - name: "arabic-financial-qa_eval"
+    hf_name: "SahmBenchmark/arabic-financial-qa_eval"
+    splits: ["validation", "test"]
+
+  - name: "fatwa-qa-evaluation"
+    hf_name: "SahmBenchmark/fatwa-qa-evaluation"
+    splits: ["validation", "test"]
+
+  - name: "financial-reports-extractive-summarization_eval"
+    hf_name: "SahmBenchmark/financial-reports-extractive-summarization_eval"
+    splits: ["validation", "test"]
+
+  - name: "Islamic_Finance_QnA_eval"
+    hf_name: "SahmBenchmark/Islamic_Finance_QnA_eval"
+    splits: ["validation", "test"]
+
+# Base configuration
+base_config:
+  outputs_dir: "outputs"
+  logs_dir: "outputs/logs"
+
+# Generation parameters
+generation:
+  max_new_tokens: 2048
+  temperature: 0.1
+  top_p: 0.9
+  do_sample: false
+
+# API configuration for closed models
+api:
+  deepinfra:
+    base_url: "https://api.deepinfra.com/v1"
+    timeout: 120
+    max_retries: 3
+    retry_delay: 1.0
+
+  openai:
+    base_url: "https://api.openai.com/v1"
+    timeout: 120
+    max_retries: 3
+    retry_delay: 1.0
+
+# Resume configuration
+resume:
+  enabled: true
+  check_existing: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "[%(levelname)s] %(asctime)s - %(message)s"
+
+seed: 42
