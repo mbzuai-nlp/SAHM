@@ -481,26 +481,26 @@ def main():
     logging.info("MULTI-DATASET EVALUATION COMPLETED")
     logging.info(f"{'='*60}")
 
-    open_count = len(models_config.get("eval_models", {}).get("open", []))
-    closed_count = len(models_config.get("eval_models", {}).get("closed", []))
+    # open_count = len(models_config.get("eval_models", {}).get("open", []))
+    # closed_count = len(models_config.get("eval_models", {}).get("closed", []))
 
-    if args.model_type == "all":
-        if api_client:
-            logging.info(
-                f"Evaluated {total_datasets} datasets with {open_count} open + {closed_count} closed models"
-            )
-        else:
-            logging.info(
-                f"Evaluated {total_datasets} datasets with {open_count} open models only"
-            )
-    elif args.model_type == "open":
-        logging.info(
-            f"Evaluated {total_datasets} datasets with {open_count} open models"
-        )
-    elif args.model_type == "closed":
-        logging.info(
-            f"Evaluated {total_datasets} datasets with {closed_count} closed models"
-        )
+    # if args.model_type == "all":
+    #     if api_client:
+    #         logging.info(
+    #             f"Evaluated {total_datasets} datasets with {open_count} open + {closed_count} closed models"
+    #         )
+    #     else:
+    #         logging.info(
+    #             f"Evaluated {total_datasets} datasets with {open_count} open models only"
+    #         )
+    # elif args.model_type == "open":
+    #     logging.info(
+    #         f"Evaluated {total_datasets} datasets with {open_count} open models"
+    #     )
+    # elif args.model_type == "closed":
+    #     logging.info(
+    #         f"Evaluated {total_datasets} datasets with {closed_count} closed models"
+    #     )
 
     logging.info(f"Results saved to: {base_output_dir}")
     logging.info("Directory structure:")
