@@ -1,21 +1,21 @@
 # Multi-dataset configuration for Arabic MCQ and Generation Evaluation
 datasets:
   # MCQ Datasets
-  # - name: "arabic-accounting-mcq_eval"
-  #   hf_name: "SahmBenchmark/arabic-accounting-mcq_eval"
-  #   splits: ["validation", "test"]
+  - name: "arabic-accounting-mcq_eval"
+    hf_name: "SahmBenchmark/arabic-accounting-mcq_eval"
+    splits: ["validation", "test"]
 
-  # - name: "arabic-business-mcq_eval"
-  #   hf_name: "SahmBenchmark/arabic-business-mcq_eval"
-  #   splits: ["validation", "test"]
+  - name: "arabic-business-mcq_eval"
+    hf_name: "SahmBenchmark/arabic-business-mcq_eval"
+    splits: ["validation", "test"]
 
-  # - name: "fatwa-mcq-evaluation_standardized"
-  #   hf_name: "SahmBenchmark/fatwa-mcq-evaluation_standardized"
-  #   splits: ["validation", "test"]
+  - name: "fatwa-mcq-evaluation_standardized"
+    hf_name: "SahmBenchmark/fatwa-mcq-evaluation_standardized"
+    splits: ["validation", "test"]
 
-  # - name: "Sentiment_Analysis_MCQ_eval"
-  #   hf_name: "SahmBenchmark/Sentiment_Analysis_MCQ_eval"
-  #   splits: ["validation", "test"]
+  - name: "Sentiment_Analysis_MCQ_eval"
+    hf_name: "SahmBenchmark/Sentiment_Analysis_MCQ_eval"
+    splits: ["validation", "test"]
 
   # Generation Datasets
   - name: "arabic-financial-qa_eval"
