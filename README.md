@@ -1,17 +1,22 @@
-<h1 align="center">
-  <img src="docs/assets/logo.png" alt="SAHM Logo" width="30" style="vertical-align: middle; margin-right: 8px;"/>
-  SAHM: Arabic Financial Instruction-Tuning Dataset & Models
-</h1>
-
 <p align="center">
-  <b>The first comprehensive benchmark and instruction-tuning suite for Arabic Shari’ah-compliant Financial NLP</b>
+  <img src="docs/assets/logo.png" alt="SAHM Logo" width="200"/>
 </p>
 
+<h1 align="center" style="font-size: 42px; font-weight: bold; margin-top: -10px;">
+  SAHM
+</h1>
+
+<p align="center" style="font-size: 20px; font-style: italic; margin-top: -10px;">
+  Arabic Financial Instruction-Tuning Dataset & Models
+</p>
+
+<hr style="width: 80%; margin: 30px auto;">
+
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/Paper-ArXiv-red"></a>
-  <a href="https://mbzuai-nlp.github.io/SAHM/"><img src="https://img.shields.io/badge/Project-Page-blue"></a>
-  <a href="https://github.com/mbzuai-nlp/SAHM"><img src="https://img.shields.io/badge/Code-GitHub-black"></a>
-  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green"></a>
+  <a href="#"><img src="https://img.shields.io/badge/paper-ArXiv-red?style=for-the-badge"></a>
+  <a href="https://mbzuai-nlp.github.io/SAHM/"><img src="https://img.shields.io/badge/project-Page-brightgreen?style=for-the-badge"></a>
+  <a href="https://mbzuai-nlp.github.io/SAHM/leaderboard.html"><img src="https://img.shields.io/badge/leaderboard-Page-blue?style=for-the-badge"></a>
+  <a href="#"><img src="https://img.shields.io/badge/demo-Spaces-gold?style=for-the-badge"></a>
 </p>
 
 ---
