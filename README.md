@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="docs/assets/logo.png" alt="SAHM Logo" width="40" style="vertical-align: middle; margin-right: 8px;"/>
+  <img src="docs/assets/logo.png" alt="SAHM Logo" width="30" style="vertical-align: middle; margin-right: 8px;"/>
   SAHM: Arabic Financial Instruction-Tuning Dataset & Models
 </h1>
 
