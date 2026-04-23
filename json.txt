@@ -1,9 +1,0 @@
-@misc{elbadry2026sahmbenchmarkarabicfinancial,
-      title={SAHM: A Benchmark for Arabic Financial and Shari'ah-Compliant Reasoning}, 
-      author={Rania Elbadry and Sarfraz Ahmad and Ahmed Heakl and Dani Bouch and Momina Ahsan and Muhra AlMahri and Marwa Elsaid khalil and Yuxia Wang and Salem Lahlou and Sophia Ananiadou and Veselin Stoyanov and Jimin Huang and Xueqing Peng and Preslav Nakov and Zhuohan Xie},
-      year={2026},
-      eprint={2604.19098},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2604.19098}, 
-    }
