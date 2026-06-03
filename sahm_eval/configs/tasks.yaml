@@ -1,0 +1,87 @@
+# ============================================================================
+# SAHM benchmark — task registry
+# Each task is one entry. `type` is either:
+#   mcq        -> scored by exact-match on the answer letter (NO LLM judge)
+#   generative -> scored by a reference-based LLM-as-judge (1-10)
+# Column names below match the real dataset schemas on the Hub.
+# ============================================================================
+
+tasks:
+
+  # ----------------------------- MCQ tasks --------------------------------
+  accounting:
+    display_name: Accounting
+    hf_path: SahmBenchmark/arabic-accounting-mcq_eval
+    type: mcq
+    prompt_col: query        # already contains question + lettered options
+    answer_col: answer       # correct LETTER, e.g. "d"
+    gold_index_col: gold     # same answer as 0-based INDEX, e.g. 3 (fallback)
+    num_choices: 5
+    max_new_tokens: 8
+
+  business:
+    display_name: Business
+    hf_path: SahmBenchmark/arabic-business-mcq_eval
+    type: mcq
+    prompt_col: query
+    answer_col: answer
+    gold_index_col: gold
+    num_choices: 5
+    max_new_tokens: 8
+
+  fatwa_mcq:
+    display_name: Islamic_Fatwa
+    hf_path: SahmBenchmark/fatwa-mcq-evaluation_standardized
+    type: mcq
+    prompt_col: query
+    answer_col: answer
+    gold_index_col: gold
+    num_choices: 4
+    max_new_tokens: 8
+
+  sentiment:
+    display_name: Sentiment_Analysis
+    hf_path: SahmBenchmark/Sentiment_Analysis_MCQ_eval
+    type: mcq
+    prompt_col: query
+    answer_col: answer
+    gold_index_col: gold
+    num_choices: 3
+    max_new_tokens: 8
+
+  # -------------------------- Generative tasks ----------------------------
+  financial_qa:
+    display_name: Arabic_Financial_QA
+    hf_path: SahmBenchmark/arabic-financial-qa_eval
+    type: generative
+    prompt_col: prompt
+    reference_col: answer
+    rubric: financial_qa
+    max_new_tokens: 1024
+
+  fatwa_qa:
+    display_name: Fatwa_QA
+    hf_path: SahmBenchmark/fatwa-qa-evaluation
+    type: generative
+    prompt_col: prompt
+    reference_col: answer
+    rubric: fatwa_qa
+    max_new_tokens: 1024
+
+  islamic_qa:
+    display_name: Islamic_Finance_QA
+    hf_path: SahmBenchmark/Islamic_Finance_QnA_eval
+    type: generative
+    prompt_col: prompt
+    reference_col: answer
+    rubric: islamic_qa
+    max_new_tokens: 1024
+
+  summarization:
+    display_name: Financial_Summarization
+    hf_path: SahmBenchmark/financial-reports-extractive-summarization_eval
+    type: generative
+    prompt_col: prompt
+    reference_col: answer
+    rubric: summarization
+    max_new_tokens: 1024

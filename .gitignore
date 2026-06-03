@@ -1,0 +1,21 @@
+# Secrets
+.env
+
+# Run outputs
+results/
+
+# Python build / packaging artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+
+# Caches & editors
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store

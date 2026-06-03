@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this benchmark or harness, please cite the SAHM paper."
+title: "SAHM: A Benchmark for Arabic Financial and Shari'ah-Compliant Reasoning"
+authors:
+  - family-names: Elbadry
+    given-names: Rania
+preferred-citation:
+  type: article
+  title: "SAHM: A Benchmark for Arabic Financial and Shari'ah-Compliant Reasoning"
+  year: 2026
+  url: "https://arxiv.org/abs/2604.19098"

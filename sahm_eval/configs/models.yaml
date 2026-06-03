@@ -1,0 +1,80 @@
+# ============================================================================
+# SAHM benchmark — model registry
+#
+# open_models  : evaluated locally with vLLM (need a GPU node)
+# api_models   : evaluated through a chat API (OpenAI-compatible)
+#
+# To add a model, copy a block and edit. `use_chat_template: true` applies the
+# tokenizer's built-in chat template (correct for all modern instruct models).
+# ============================================================================
+
+open_models:
+
+  # ---- Arabic baselines ----
+  ALLAM-7B:
+    model_id: ALLaM-AI/ALLaM-7B-Instruct-preview
+    max_model_len: 4096
+    tensor_parallel_size: 1
+    use_chat_template: true
+  SILMA-9B:
+    model_id: silma-ai/SILMA-9B-Instruct-v1.0
+    max_model_len: 8192
+    tensor_parallel_size: 1
+    use_chat_template: true
+  Fanar-9B:
+    model_id: QCRI/Fanar-1-9B-Instruct
+    max_model_len: 4096          # config max_position_embeddings=4096 (hard limit)
+    tensor_parallel_size: 1
+    use_chat_template: true
+
+  # ---- General-purpose baselines ----
+  qwen2.5-7b:
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    max_model_len: 8192
+    tensor_parallel_size: 1
+    use_chat_template: true
+  qwen2.5-14b:
+    model_id: Qwen/Qwen2.5-14B-Instruct
+    max_model_len: 8192
+    tensor_parallel_size: 1
+    use_chat_template: true
+  llama-3.1-8b:
+    model_id: meta-llama/Llama-3.1-8B-Instruct
+    max_model_len: 8192
+    tensor_parallel_size: 1
+    use_chat_template: true
+  gemma-2-9b:
+    model_id: google/gemma-2-9b-it
+    max_model_len: 8192
+    tensor_parallel_size: 1
+    use_chat_template: true
+
+  # ---- SAHM models (enable when evaluating the released checkpoints) ----
+  # SAHM-SILMA-9B:
+  #   model_id: SahmBenchmark/arabic-merged-sft-SILMA
+  #   max_model_len: 4096
+  #   tensor_parallel_size: 1
+  #   use_chat_template: true
+  # SAHM-Fanar-9B:
+  #   model_id: SahmBenchmark/arabic-merged-sft-Fanar
+  #   max_model_len: 4096
+  #   tensor_parallel_size: 1
+  #   use_chat_template: true
+
+api_models:
+  # OpenAI-compatible. base_url omitted => api.openai.com.
+  # Set the key via env var named in `api_key_env`.
+  gpt-4o:
+    model_name: gpt-4o
+    api_key_env: OPENAI_API_KEY
+    max_tokens: 1024
+  gpt-5:
+    model_name: gpt-5
+    api_key_env: OPENAI_API_KEY
+    max_tokens: 1024
+  # Example of a non-OpenAI provider through an OpenAI-compatible gateway:
+  # llama-3.1-70b:
+  #   model_name: meta-llama/Meta-Llama-3.1-70B-Instruct
+  #   base_url: https://api.deepinfra.com/v1/openai
+  #   api_key_env: DEEPINFRA_API_KEY
+  #   max_tokens: 1024
