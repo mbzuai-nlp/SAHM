@@ -23,9 +23,6 @@
 <p align="center"><b>MBZUAI</b></p>
 
 <!-- Optional banner. Drop the image at assets/sahm-overview.png and it will render here. -->
-<p align="center">
-  <img src="assets/sahm-overview.png" alt="SAHM benchmark overview" width="720"/>
-</p>
 
 ---
 
@@ -89,9 +86,6 @@ and are loaded automatically (set `HF_TOKEN`).
 ## 🧠 How Scoring Works
 
 <!-- Optional diagram. Drop the image at assets/sahm-pipeline.png and it will render here. -->
-<p align="center">
-  <img src="assets/sahm-pipeline.png" alt="SAHM evaluation pipeline: load → generate → score → leaderboard" width="760"/>
-</p>
 
 **MCQ — no LLM in the loop.** The gold answer is a clean letter (`answer`, e.g.
 `d`) and index (`gold`, e.g. `3`). For each question we read the model's chosen
