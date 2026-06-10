@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAHM Leaderboard</title>
+  <meta name="description" content="Leaderboards for SAHM: A Benchmark for Arabic Financial and Shari’ah-Compliant Reasoning" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{
+      background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #f8fafc 55%, #eef2f7 100%);
+    }
+    .section{
+      max-width: 90rem;
+      margin: 0 auto;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+    .card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:1rem;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.55rem .9rem;
+      border-radius:1rem;
+      border:1px solid #e5e7eb;
+      background:#fff;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+      font-size:.95rem;
+    }
+    .btn:hover{
+      box-shadow:0 6px 14px rgba(0,0,0,.08);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:900px;
+    }
+    thead th{
+      position:sticky;
+      top:0;
+      background:#f8fafc;
+      z-index:1;
+    }
+    th, td{
+      padding:.65rem .75rem;
+      text-align:center;
+      border-bottom:1px solid #e5e7eb;
+      vertical-align:middle;
+      font-size:.95rem;
+    }
+    th:first-child, td:first-child{
+      text-align:left;
+      white-space:nowrap;
+    }
+    .group-row td{
+      background:#f8fafc;
+      font-weight:600;
+      font-style:italic;
+      text-align:left !important;
+    }
+    .note{
+      font-size:.875rem;
+      color:#6b7280;
+      margin-top:.65rem;
+    }
+    .delta-pos{
+      color:#166534;
+      font-size:.85em;
+      white-space:nowrap;
+    }
+    .delta-neg{
+      color:#b91c1c;
+      font-size:.85em;
+      white-space:nowrap;
+    }
+    .best{
+      font-weight:700;
+    }
+  </style>
+</head>
+<body class="text-gray-800 selection:bg-amber-200/40">
+  <header class="section pt-10 pb-4">
+    <div class="flex items-center justify-between gap-4">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">SAHM Leaderboard</h1>
+      <a href="./index.html" class="btn" aria-label="Back to SAHM home">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </a>
+    </div>
+    <p class="mt-2 text-gray-600">Recreated from the paper for quick comparison. Scores are as reported.</p>
+  </header>
+
+  <!-- Table 1: Unified Leaderboard -->
+  <section class="section py-4">
+    <div class="card p-4">
+      <h2 class="text-xl font-semibold">Unified Leaderboard (MCQ Accuracy % and Open-Ended QA Score 0–10)</h2>
+      <div class="overflow-x-auto mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="3">Model</th>
+              <th colspan="5" class="text-center">MCQ (Accuracy % ↑)</th>
+              <th colspan="4" class="text-center">Open-Ended QA (Score 0–10 ↑)</th>
+            </tr>
+            <tr>
+              <th colspan="5" class="text-center">Datasets</th>
+              <th colspan="4" class="text-center">Datasets</th>
+            </tr>
+            <tr>
+              <th>Accounting</th>
+              <th>Business</th>
+              <th>Fatwā</th>
+              <th>Sentiment</th>
+              <th>Mean</th>
+              <th>Event-Cause QA</th>
+              <th>Islamic-Standards-QA</th>
+              <th>Fatwa-QA</th>
+              <th>Mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-row"><td colspan="10">Open-source Models: ≥ 70B Parameters</td></tr>
+            <tr>
+              <td>Qwen2.5-72B-Instruct</td>
+              <td>65.87</td><td>74.86</td><td>84.65</td><td>75.00</td><td>75.10</td>
+              <td>8.1000</td><td>5.6330</td><td>5.3912</td><td>6.3747</td>
+            </tr>
+            <tr>
+              <td>LLaMA-3.1-70B</td>
+              <td>52.10</td><td>77.60</td><td>84.90</td><td>80.00</td><td>73.65</td>
+              <td>6.623</td><td>3.7245</td><td>4.7607</td><td>5.036</td>
+            </tr>
+
+            <tr class="group-row"><td colspan="10">Open-source Models: &lt; 70B Parameters</td></tr>
+            <tr>
+              <td>Qwen2.5-14B-Instruct</td>
+              <td>49.10</td><td>63.39</td><td>76.05</td><td>57.50</td><td>61.51</td>
+              <td>7.4975</td><td>4.8806</td><td>4.0576</td><td>5.4786</td>
+            </tr>
+            <tr>
+              <td>Qwen2.5-7B-Instruct</td>
+              <td>48.50</td><td>59.56</td><td>70.00</td><td>55.00</td><td>58.27</td>
+              <td>6.1038</td><td>3.4039</td><td>2.6815</td><td>4.0631</td>
+            </tr>
+            <tr>
+              <td>Gemma-2-9B-IT</td>
+              <td>49.10</td><td>63.39</td><td>66.60</td><td>55.00</td><td>58.52</td>
+              <td>7.1438</td><td>4.2306</td><td>3.4266</td><td>4.9336</td>
+            </tr>
+            <tr>
+              <td>Gemma-3-27B-IT</td>
+              <td>53.89</td><td>73.22</td><td>80.65</td><td>80.00</td><td>71.94</td>
+              <td>8.7188</td><td>6.1708</td><td>5.1929</td><td>6.6942</td>
+            </tr>
+            <tr>
+              <td>Gemma-3-4B-IT</td>
+              <td>38.32</td><td>67.76</td><td>61.35</td><td>75.00</td><td>60.61</td>
+              <td>7.4075</td><td>2.8985</td><td>2.4767</td><td>4.2609</td>
+            </tr>
+            <tr>
+              <td>LLaMA-3.1-8B</td>
+              <td>41.92</td><td>60.66</td><td>64.05</td><td>73.75</td><td>60.60</td>
+              <td>4.9231</td><td>2.5168</td><td>1.4025</td><td>2.9475</td>
+            </tr>
+            <tr>
+              <td>Mixtral-8x7B-Instruct</td>
+              <td>32.93</td><td>60.66</td><td>62.15</td><td>70.00</td><td>56.44</td>
+              <td>4.5538</td><td>2.4980</td><td>1.7896</td><td>2.9471</td>
+            </tr>
+
+            <tr class="group-row"><td colspan="10">Proprietary Models: Reasoning-Enhanced</td></tr>
+            <tr>
+              <td>GPT-5</td>
+              <td>65.27</td><td>72.68</td><td>90.75</td><td>78.75</td><td>76.86</td>
+              <td>9.6831</td><td>8.7965</td><td>8.0515</td><td>8.8437</td>
+            </tr>
+            <tr>
+              <td>GPT-4o</td>
+              <td>60.48</td><td class="best">78.14</td><td>87.70</td><td>77.50</td><td>75.96</td>
+              <td>8.3125</td><td>6.6598</td><td>6.5219</td><td>7.1647</td>
+            </tr>
+
+            <tr class="group-row"><td colspan="10">Proprietary Models: General-Purpose</td></tr>
+            <tr>
+              <td>Claude-Opus-4.5</td>
+              <td>77.84</td><td>76.50</td><td>91.75</td><td>75.00</td><td>80.27</td>
+              <td>9.6818</td><td>8.0438</td><td>8.80906</td><td>8.8449</td>
+            </tr>
+            <tr>
+              <td>Claude-Sonnet-4.5</td>
+              <td>78.44</td><td>76.50</td><td>88.15</td><td>77.50</td><td>80.15</td>
+              <td>9.3388</td><td>8.2588</td><td>7.6049</td><td>8.4008</td>
+            </tr>
+            <tr>
+              <td>Claude-Haiku-4.5</td>
+              <td>67.66</td><td>73.77</td><td>84.90</td><td>77.50</td><td>75.96</td>
+              <td>9.1050</td><td>7.0002</td><td>6.5341</td><td>7.5464</td>
+            </tr>
+            <tr>
+              <td>Gemini-3-Flash (preview)</td>
+              <td>76.05</td><td>74.86</td><td>89.90</td><td>81.25</td><td>80.52</td>
+              <td class="best">9.8369</td><td class="best">9.1649</td><td class="best">9.1571</td><td class="best">9.0798</td>
+            </tr>
+            <tr>
+              <td>GPT-4o-mini</td>
+              <td>58.08</td><td>77.60</td><td>81.75</td><td>75.00</td><td>73.61</td>
+              <td>7.9613</td><td>5.6094</td><td>5.3087</td><td>6.2931</td>
+            </tr>
+
+            <tr class="group-row"><td colspan="10">Arabic Models</td></tr>
+            <tr>
+              <td>ALLAM-7B</td>
+              <td>44.91</td><td>68.31</td><td>74.40</td><td>58.75</td><td>61.59</td>
+              <td>6.8875</td><td>4.9364</td><td>4.2185</td><td>5.3475</td>
+            </tr>
+            <tr>
+              <td>Fanar-1-9B</td>
+              <td>47.31</td><td>66.12</td><td>74.45</td><td>58.75</td><td>61.66</td>
+              <td>7.5850</td><td>4.9607</td><td>4.4600</td><td>5.6686</td>
+            </tr>
+            <tr>
+              <td>SILMA-9B</td>
+              <td>50.90</td><td>69.40</td><td>62.55</td><td>30.00</td><td>53.21</td>
+              <td>1.8969</td><td>3.3547</td><td>2.0711</td><td>2.4409</td>
+            </tr>
+            <tr>
+              <td>Jais-2-8B</td>
+              <td>35.33</td><td>60.30</td><td>66.10</td><td>46.25</td><td>52.00</td>
+              <td>4.6922</td><td>4.245</td><td>2.5147</td><td>4.88</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Table 1: Unified leaderboard comparing MCQ tasks (Accuracy %) and open-ended QA tasks (Score 0–10). Open-ended QA scores are averaged over Event-Cause QA, Islamic-Standards-QA, and Fatwa-QA.</p>
+    </div>
+  </section>
+
+  <!-- Table 2: Extractive Summarization -->
+  <section class="section py-4">
+    <div class="card p-4">
+      <h2 class="text-xl font-semibold">Extractive Summarization on Arabic Financial Reports (ROUGE F1 %)</h2>
+      <div class="overflow-x-auto mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>ROUGE-1</th>
+              <th>ROUGE-2</th>
+              <th>ROUGE-L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-row"><td colspan="4">Proprietary Models – Reasoning-Enhanced</td></tr>
+            <tr><td>Claude-Opus-4.5</td><td>78.22</td><td>63.17</td><td>64.14</td></tr>
+            <tr><td>GPT-5</td><td>41.19</td><td>63.70</td><td>64.11</td></tr>
+            <tr><td>Claude-Sonnet-4.5</td><td class="best">79.86</td><td class="best">64.98</td><td class="best">65.13</td></tr>
+
+            <tr class="group-row"><td colspan="4">Proprietary Models – General-Purpose</td></tr>
+            <tr><td>Claude-Haiku-4.5</td><td class="best">79.39</td><td>61.40</td><td>63.62</td></tr>
+            <tr><td>GPT-4o-mini</td><td>77.79</td><td>62.90</td><td>64.08</td></tr>
+            <tr><td>GPT-4o</td><td>78.91</td><td class="best">63.16</td><td class="best">63.71</td></tr>
+            <tr><td>Gemini-3-Flash</td><td>49.36</td><td>35.83</td><td>43.02</td></tr>
+            <tr><td>Gemini-2.5-Flash</td><td>39.46</td><td>27.17</td><td>36.81</td></tr>
+
+            <tr class="group-row"><td colspan="4">Open-source Models: ≥ 70B Parameters</td></tr>
+            <tr><td>Gemma-3-27B-IT</td><td class="best">79.25</td><td class="best">63.57</td><td class="best">63.42</td></tr>
+            <tr><td>Qwen2.5-72B-Instruct</td><td>40.52</td><td>29.50</td><td>34.04</td></tr>
+            <tr><td>Meta-LLaMA-3.1-70B</td><td>39.64</td><td>31.40</td><td>32.65</td></tr>
+
+            <tr class="group-row"><td colspan="4">Open-source Models: &lt; 70B Parameters</td></tr>
+            <tr><td>Qwen2.5-14B-Instruct</td><td>44.42</td><td>30.90</td><td>35.82</td></tr>
+            <tr><td>Gemma-3-4B-IT</td><td class="best">76.52</td><td class="best">62.06</td><td class="best">60.93</td></tr>
+            <tr><td>Meta-LLaMA-3.1-8B</td><td>66.67</td><td>47.92</td><td>56.10</td></tr>
+            <tr><td>Mixtral-8x7B-Instruct</td><td>32.71</td><td>13.07</td><td>23.78</td></tr>
+            <tr><td>Qwen2.5-7B-Instruct</td><td>25.15</td><td>12.01</td><td>21.86</td></tr>
+
+            <tr class="group-row"><td colspan="4">Arabic Models</td></tr>
+            <tr><td>Jais-2-8B</td><td class="best">73.68</td><td class="best">56.54</td><td class="best">61.17</td></tr>
+            <tr><td>Fanar-1-9B-Instruct</td><td>60.51</td><td>35.97</td><td>46.96</td></tr>
+            <tr><td>ALLaM-7B-Instruct</td><td>35.97</td><td>22.61</td><td>28.24</td></tr>
+            <tr><td>SILMA-9B-Instruct</td><td>27.92</td><td>16.66</td><td>25.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Table 2: Extractive summarization performance on Arabic financial reports evaluated using ROUGE F1 (%).</p>
+    </div>
+  </section>
+
+  <!-- Table 3: Domain Adaptation -->
+  <section class="section py-4">
+    <div class="card p-4">
+      <h2 class="text-xl font-semibold">Domain Adaptation Across Arabic LLMs</h2>
+      <div class="overflow-x-auto mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Model</th>
+              <th colspan="5">MCQ (Accuracy % ↑)</th>
+              <th colspan="4">Open-Ended QA (Score 0–10 ↑)</th>
+            </tr>
+            <tr>
+              <th>Accounting</th>
+              <th>Business</th>
+              <th>Fatwā</th>
+              <th>Sentiment</th>
+              <th>Mean</th>
+              <th>Event-Cause</th>
+              <th>Fatwa-QA</th>
+              <th>Islamic-Std</th>
+              <th>Mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-row"><td colspan="10">Base Models</td></tr>
+            <tr>
+              <td>ALLAM-7B</td>
+              <td>44.91</td><td>68.31</td><td>74.40</td><td>58.75</td><td>61.59</td>
+              <td>6.89</td><td>4.94</td><td>4.22</td><td>5.35</td>
+            </tr>
+            <tr>
+              <td>Jais-2-8B</td>
+              <td>35.33</td><td>60.30</td><td>66.10</td><td>46.25</td><td>52.00</td>
+              <td>4.69</td><td>2.51</td><td>4.24</td><td>4.88</td>
+            </tr>
+            <tr>
+              <td>SILMA-9B</td>
+              <td>50.90</td><td>69.40</td><td>62.55</td><td>30.00</td><td>53.21</td>
+              <td>1.90</td><td>3.35</td><td>2.07</td><td>2.44</td>
+            </tr>
+
+            <tr class="group-row"><td colspan="10">Fine-tuned Models</td></tr>
+            <tr>
+              <td>ALLAM-7B</td>
+              <td>71.40 <span class="delta-pos">(+26.5)</span></td>
+              <td>93.99 <span class="delta-pos">(+25.7)</span></td>
+              <td>74.45 <span class="delta-pos">(+0.1)</span></td>
+              <td>61.25 <span class="delta-pos">(+2.5)</span></td>
+              <td>75.27 <span class="delta-pos">(+13.7)</span></td>
+              <td>6.79 <span class="delta-neg">(-0.1)</span></td>
+              <td>6.48 <span class="delta-pos">(+1.5)</span></td>
+              <td>4.12 <span class="delta-neg">(-0.1)</span></td>
+              <td>5.80 <span class="delta-pos">(+0.5)</span></td>
+            </tr>
+            <tr>
+              <td>Jais-2-8B</td>
+              <td>40.72 <span class="delta-pos">(+5.4)</span></td>
+              <td>62.30 <span class="delta-pos">(+2.0)</span></td>
+              <td>70.14 <span class="delta-pos">(+4.0)</span></td>
+              <td>57.97 <span class="delta-pos">(+11.7)</span></td>
+              <td>57.78 <span class="delta-pos">(+5.8)</span></td>
+              <td>5.25 <span class="delta-pos">(+0.6)</span></td>
+              <td>4.69 <span class="delta-pos">(+2.2)</span></td>
+              <td>4.97 <span class="delta-pos">(+0.7)</span></td>
+              <td>4.97 <span class="delta-pos">(+0.1)</span></td>
+            </tr>
+            <tr>
+              <td>SILMA-9B</td>
+              <td>43.11 <span class="delta-neg">(-7.8)</span></td>
+              <td>75.96 <span class="delta-pos">(+6.6)</span></td>
+              <td>60.60 <span class="delta-neg">(-2.0)</span></td>
+              <td>53.75 <span class="delta-pos">(+23.8)</span></td>
+              <td>58.36 <span class="delta-pos">(+5.2)</span></td>
+              <td>2.01 <span class="delta-pos">(+0.1)</span></td>
+              <td>3.67 <span class="delta-pos">(+0.3)</span></td>
+              <td>3.67 <span class="delta-pos">(+1.6)</span></td>
+              <td>3.12 <span class="delta-pos">(+0.7)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Table 3: Domain adaptation across Arabic LLMs. MCQ accuracy (%) and Open-Ended QA scores (0–10) before and after fine-tuning on SAHM.</p>
+    </div>
+  </section>
+
+  <footer class="section py-10 text-center text-sm text-gray-500">
+    <div class="flex items-center justify-center gap-4">
+      <a class="btn" href="./index.html">← Back to Home</a>
+    </div>
+    <p class="mt-3">© <span id="year"></span> The Authors.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
